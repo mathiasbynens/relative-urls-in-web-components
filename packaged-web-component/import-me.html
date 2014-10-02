@@ -1,0 +1,30 @@
+<template>
+	<style>
+		@import url(main.css);
+		/* Note: <link> is inert within <template>, so it cannot be used instead. */
+	</style>
+	This is a web component that should have a green background image.
+</template>
+<script>
+	(function() {
+
+		var ownerDocument = document.currentScript.ownerDocument;
+
+		var prototype = Object.create(HTMLElement.prototype, {
+			'createdCallback': {
+				'value': function() {
+					var template = ownerDocument.querySelector('template');
+					var clone = document.importNode(template.content, true);
+					var shadow = this.createShadowRoot();
+					shadow.appendChild(clone);
+				}
+			}
+		});
+
+		document.registerElement('example-component', {
+			'prototype': prototype,
+			'extends': 'p'
+		});
+
+	}());
+</script>

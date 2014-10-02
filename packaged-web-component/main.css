@@ -1,0 +1,8 @@
+:host {
+	background: red url(background.png);
+	/*
+		This is a background image for demonstration purposes, but it could
+		be any resource that is not worth inlining as a data URL. Heavy web fonts,
+		for example.
+	*/
+}
